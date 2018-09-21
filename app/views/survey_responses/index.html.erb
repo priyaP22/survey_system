@@ -1,0 +1,24 @@
+<h1>Surveys</h1>
+<table>
+  <% if current_user.is_admin? %>
+    <tr>
+      <%= link_to "Admin Root", root_path %>
+    </tr>
+  <% end %>
+  <tr>
+    <p>please, select one of the following surveys to give your valuable response.</p>
+  </tr>
+
+  <% @surveys.each do |survey| %>
+    <tr>
+      <td><h5>Survey Name</h5></td>
+      <td><h5>Survey Description</h5></td>
+    </tr>
+    <tr>
+      <td><%= survey.name %></td>
+      <td><%= survey.description %></td>
+      <td><%= link_to "Click here to participate", new_survey_response_path(id: survey.id) %></td>
+    </tr>
+  <% end %>
+
+</table>

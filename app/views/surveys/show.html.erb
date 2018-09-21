@@ -1,0 +1,40 @@
+<p>
+  <strong>Name:</strong>
+  <%= @survey.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @survey.description %>
+</p>
+<ol>
+  <% for question in @survey.questions %>
+  <li><%= question.title %></li>
+  <% end %>
+</ol>
+<p>
+  <%= link_to "Edit", edit_survey_path(@survey) %> |
+  <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", surveys_path %>
+</p>
+
+<p>
+  <h4> User Responses </h4>
+  <table>
+    <tr>
+      <% @survey.questions.each do |q| %>
+        <td><%= q.title %></td>
+      <% end %>
+    </tr>
+    <% @survey_responses.each do |sr|%>
+      <tr>
+        <% @survey.questions.each do |q| %>
+          <td>
+            <%res =  sr.responses.find_by(question_id: q.id) %>
+            <%=  res ? res.answer : "" %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</p>

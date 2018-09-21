@@ -1,0 +1,18 @@
+<% if current_user %>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <p class="navbar-text">
+          <%= link_to "Surveys", survey_responses_path %>
+        <p>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <p class="navbar-text">
+          Logged in as:
+          <b> <%= current_user.name %> </b>
+          <%= link_to '(Sign up as new user)', '#', 'data-toggle': 'modal', 'data-target': '#user-info' %>
+        </p>
+      </li>
+    </ul>
+<% end %>
