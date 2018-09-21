@@ -1,2 +1,9 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
+
+// Bootstrap
 @import "bootstrap";
+
+@import "rails_bootstrap_forms";
+
+// Variables
+@import "surveys";

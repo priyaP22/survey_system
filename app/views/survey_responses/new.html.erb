@@ -1,19 +1,22 @@
+<div class="form_survey">
+  <p><h3>Fill this form up to voice your feedback, thanks :)</h3></p>
 
-<%= form_for @survey_response, local: true do |form| %>
-<%= hidden_field_tag :survey_id, @survey.id %>
- <% @empty_responses.each do |response| %>
-   <%= fields_for 'responses[]', response, include_id: false do |r| %>
-      <h5><%= response.question.title %></h5>
-      <p>
-        <%= r.text_area :answer, name: 'responses[' + @empty_responses.index(response).to_s + '][' + "answer" + ']' %>
-      </p>
-      <%= r.hidden_field :question_id, value: response.question.id, name: 'responses[' + @empty_responses.index(response).to_s + '][' + "question_id" + ']' %>
-      <%= r.hidden_field :user_id, value: response.user.id, name: 'responses[' + @empty_responses.index(response).to_s + '][' + "user_id" + ']' %>
+  <%= bootstrap_form_for @survey_response, local: true do |form| %>
+  <%= hidden_field_tag :survey_id, @survey.id %>
+   <% @empty_responses.each do |response| %>
+     <%= fields_for 'responses[]', response, include_id: false do |r| %>
+        <b><%= response.question.title %></b>
+        <p>
+          <%= r.text_area :answer, name: 'responses[' + @empty_responses.index(response).to_s + '][' + "answer" + ']', class: 'form-control' %>
+        </p>
+        <%= r.hidden_field :question_id, value: response.question.id, name: 'responses[' + @empty_responses.index(response).to_s + '][' + "question_id" + ']' %>
+        <%= r.hidden_field :user_id, value: response.user.id, name: 'responses[' + @empty_responses.index(response).to_s + '][' + "user_id" + ']' %>
+     <% end %>
    <% end %>
- <% end %>
 
-  <p>
-    <%= form.submit %>
-  </p>
+    <p>
+      <%= form.submit "Submit" ,class: 'login-button' %>
+    </p>
 
-<% end %>
+  <% end %>
+</div>

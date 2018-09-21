@@ -1,40 +1,53 @@
-<p>
-  <strong>Name:</strong>
-  <%= @survey.name %>
-</p>
+<div class="container-fluid">
+  <p>
+    <strong>Name:</strong>
+    <%= @survey.name %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @survey.description %>
-</p>
-<ol>
-  <% for question in @survey.questions %>
-  <li><%= question.title %></li>
-  <% end %>
-</ol>
-<p>
-  <%= link_to "Edit", edit_survey_path(@survey) %> |
-  <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", surveys_path %>
-</p>
-
-<p>
-  <h4> User Responses </h4>
-  <table>
-    <tr>
-      <% @survey.questions.each do |q| %>
-        <td><%= q.title %></td>
+  <p>
+    <strong>Description:</strong>
+    <%= @survey.description %>
+  </p>
+  <p>
+    <strong>Questions:</strong>
+    <ol class="list-group">
+      <% for question in @survey.questions %>
+      <li class="list-group-item"><%= question.title %></li>
       <% end %>
-    </tr>
-    <% @survey_responses.each do |sr|%>
-      <tr>
-        <% @survey.questions.each do |q| %>
-          <td>
-            <%res =  sr.responses.find_by(question_id: q.id) %>
-            <%=  res ? res.answer : "" %>
-          </td>
+    </ol>
+  </p>
+  <p>
+    <%= link_to "Edit", edit_survey_path(@survey) %> |
+    <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete %> |
+    <%= link_to "View All", surveys_path %>
+  </p>
+
+  <p>
+    <h3> User Responses </h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td><b>User Name</b></td>
+          <% @survey.questions.each do |q| %>
+            <td><b><%= q.title %></b></td>
+          <% end %>
+
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @survey_responses.each do |sr|%>
+          <tr>
+            <td><%= current_user.name %></td>
+            <% @survey.questions.each do |q| %>
+              <td>
+                <%res =  sr.responses.find_by(question_id: q.id) %>
+                <%=  res ? res.answer : "" %>
+              </td>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </table>
-</p>
+      </tbody>
+    </table>
+  </p>
+</div>

@@ -23,6 +23,8 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'bootstrap'
 # Use jquery as the JavaScript library
+gem 'bootstrap_form'
+
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'

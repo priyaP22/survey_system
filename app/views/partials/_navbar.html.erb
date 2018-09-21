@@ -1,18 +1,32 @@
 <% if current_user %>
-    <ul class="nav navbar-nav navbar-right">
-      <li>
-        <p class="navbar-text">
-          <%= link_to "Surveys", survey_responses_path %>
-        <p>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li>
-        <p class="navbar-text">
-          Logged in as:
-          <b> <%= current_user.name %> </b>
-          <%= link_to '(Sign up as new user)', '#', 'data-toggle': 'modal', 'data-target': '#user-info' %>
-        </p>
-      </li>
-    </ul>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid ">
+            <ul class="nav navbar-nav">
+              <li>
+                <% if current_user.is_admin? %>
+                  <p class="navbar-text">
+                    <%= link_to "Admin Home", root_path %>
+                  </p>
+                <% end %>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <p class="navbar-text ">
+                  <%= link_to "New survey", survey_responses_path %>
+                <p>
+              </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <p class="navbar-text">
+                  Logged in as:
+                  <b> <%= current_user.name %> </b>
+                  <%= link_to '(Sign up as new user)', '#', 'data-toggle': 'modal', 'data-target': '#user-info' %>
+                </p>
+              </li>
+            </ul>
+          </div>
+        </nav>
 <% end %>
