@@ -14,7 +14,7 @@ class ApiController < ApplicationController
   def responses(sr)
     sr.responses.each do |r|
       {
-        question: r.question.title,
+        question: r.question ? r.question.title : nil,
         answer: r.answer
       }
     end
